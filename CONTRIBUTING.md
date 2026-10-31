@@ -1,53 +1,65 @@
-# Contributing to Discord orbshacker
+# Contributing to Discord Quest Completer (Orion)
 
-Thank you for your interest in contributing to this project! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing! This project is maintained to provide a fast, reliable, zero-install Discord Quest automation suite running natively in Discord Desktop.
 
-## Getting Started
+---
 
-1. Fork the repository
-2. Clone your fork: `git clone https://github.com/DanielPires2000/orbshacker.git`
-3. Create a new branch: `git checkout -b feature/add-new-game-support`
-4. Make your changes
-5. Commit your changes: `git commit -m "Add support for new game detection"`
-6. Push to your fork: `git push origin feature/add-new-game-support`
-7. Open a Pull Request
+## 🚀 Getting Started
 
-## Code Style
+1. **Fork the repository** on GitHub.
+2. **Clone your fork**:
+   ```bash
+   git clone https://github.com/akm1311/orbshacker.git
+   cd orbshacker
+   ```
+3. **Create a topic branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Make your changes**:
+   - Primary script: [`quest_script.js`](./quest_script.js) (JavaScript / Discord Webpack store patches)
+   - Setup utility: [`enable_devtools.py`](./enable_devtools.py) (Python 3.10+)
+5. **Commit your changes**:
+   ```bash
+   git commit -m "feat: describe your change cleanly"
+   ```
+6. **Push to your fork & open a Pull Request**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
 
-- Follow PEP 8 Python style guide
-- Use meaningful variable and function names
-- Add docstrings to functions and classes
-- Keep functions focused and single-purpose
-- Comment complex logic, but avoid obvious comments
+---
 
-## Commit Messages
+## 🛠️ Development & Architecture Standards
 
-- Use clear, descriptive commit messages
-- Start with a capital letter
-- Use imperative mood ("Add feature" not "Added feature")
-- Reference issues when applicable
+### In-Client Console Script (`quest_script.js`)
+- **Runtime**: Runs directly in Discord's Chromium/Electron developer console.
+- **Language**: Modern ES6+ JavaScript (`"use strict"`).
+- **Zero External Spoofing**: Do not introduce fake binary executables (`.exe`) or filesystem pollers. Automation must operate via Discord's internal stores (`RunningGameStore`, `QuestStore`, `FluxDispatcher`, `RestAPI`).
+- **Safety & Privacy**: Never commit or log Discord tokens, authentication cookies, or personal system file paths.
+- **Cross-Platform Compatibility**: Ensure features work identically on both macOS and Windows Discord Desktop clients.
 
-## Pull Request Process
+### Toolchain & Formatting
+- Code syntax should be verified using Bun or Node:
+  ```bash
+  bun -e "new Function(require('fs').readFileSync('quest_script.js', 'utf8'))"
+  ```
+- Keep console styling CSP-safe and DOM manipulation clean.
 
-1. Ensure your code works correctly
-2. Update documentation if needed
-3. Test on different platforms if possible
-4. Ensure no linter errors
-5. Write a clear PR description explaining your changes
+---
 
-## Reporting Issues
+## 📋 Pull Request Guidelines
 
-When reporting issues, please include:
-- Description of the problem
-- Steps to reproduce
-- Expected behavior
-- Actual behavior
-- System information (OS, Python version)
-- Error messages if any
+1. **Test locally in Discord**: Verify your changes in Discord Desktop with DevTools enabled (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> on Windows, <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> on macOS).
+2. **Document changes**: Update [`README.md`](./README.md) or agent guidelines if you change configuration defaults or add supported quest types.
+3. **Keep PRs atomic**: One feature, bug fix, or quest handler enhancement per PR.
 
-## Questions?
+---
 
-Feel free to open an issue for any questions or discussions about the project.
+## 🐛 Reporting Issues
 
-Thank you for contributing!
-
+When reporting an issue, please provide:
+- **Operating System**: (e.g. Windows 11, macOS Sequoia Apple Silicon)
+- **Discord Version / Channel**: (Stable, PTB, or Canary)
+- **Quest Name & Task Type**: (e.g. Play Game, Stream, Watch Video, Activity)
+- **Console Log Output**: Redact any personal account tags or IDs before posting.
