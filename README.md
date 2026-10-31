@@ -91,8 +91,7 @@ python enable_devtools.py
 │   ├── agents.md
 │   └── project-context.md
 ├── README.md               # Documentation & usage guide
-├── LICENSE.md              # MIT License
-└── LICENSE                 # MIT License
+└── LICENSE.md              # MIT License
 ```
 
 ---
