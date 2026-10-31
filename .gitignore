@@ -140,3 +140,15 @@ Win64/
 !exe.exe
 .backups/
 settings.py
+
+
+# Security & Secrets Prevention
+*.pem
+*.key
+*.cert
+*.crt
+*.env*
+id.json
+*keypair*.json
+w1.json
+node_modules/
