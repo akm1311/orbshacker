@@ -70,7 +70,7 @@ python enable_devtools.py
 
 ## 📊 Comparison: In-Client Script vs Legacy `.exe` Spoofers
 
-| Feature | In-Client Console Script (`quest_script.js`) | Legacy Spoofers (`orbshacker.py`) |
+| Feature | In-Client Console Script (`quest_script.js`) | Legacy External Spoofers |
 | :--- | :---: | :---: |
 | **macOS Support** | ✅ Native macOS support | ❌ Windows only |
 | **Parallel Game Tasks** | ✅ Uncapped (default 15 games simultaneously) | ❌ One game at a time |
