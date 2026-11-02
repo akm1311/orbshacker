@@ -27,9 +27,9 @@ No fake executable binaries (`.exe`). No background spoofers. No disk clutter. J
   - **Audio Cue on Completion**: Plays an instant audio chime notification when quests finish (enabled by default).
 - **🖥️ Native Interactive UI & Quick Controls**:
   - Renders a clean, responsive modal directly inside Discord with real-time progress bars, individual quest checkboxes, reward filters, and settings toggles.
-  - **Live Settings Drawer (⚙️)**: Easily change max concurrency, toggle sound, or configure auto-enrollment on the fly.
-  - **Floating Unhide Pill & Hotkey**: Minimize the UI anytime; restore it with the floating `[⚡ Show Orion Quests]` button or press <kbd>Shift</kbd> + <kbd>.</kbd>.
-  - **Direct Discord Quests Tab Navigation**: Jump straight to Discord's `/quest-home` tab with a single click (`🎁 QUESTS TAB`) to view or claim completed rewards.
+  - **Live Settings Drawer (⚙️)**: Easily change max concurrency, toggle sound, configure random cycle delays, or toggle auto-enrollment and auto-claim on the fly.
+  - **Floating Unhide Pill & Hotkey**: Minimize the UI anytime; restore it with the floating `[⚡ Orion]` pill button or press <kbd>Shift</kbd> + <kbd>.</kbd> (or <kbd>&gt;</kbd>).
+  - **Direct Discord Quests Tab Navigation**: Jump straight to Discord's `/quest-home` tab with a single click (🧭 icon) to view or claim completed rewards.
 - **🍏 Cross-Platform (macOS & Windows)**:
   - Works identically on macOS (Apple Silicon & Intel) and Windows 10/11.
 
