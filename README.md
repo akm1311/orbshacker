@@ -8,6 +8,10 @@ A fast, lightweight, zero-install Discord Quest automation suite running directl
 
 No fake executable binaries (`.exe`). No background spoofers. No disk clutter. Just paste into Discord's developer console and watch all your quests complete automatically.
 
+<p align="center">
+  <img src="./assets/preview.jpg" alt="Orion Discord Quest Completer Interface" width="380" />
+</p>
+
 ---
 
 ## ⚡ Features
