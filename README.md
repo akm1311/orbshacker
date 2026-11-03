@@ -94,6 +94,7 @@ python enable_devtools.py
 ```text
 ├── quest_script.js         # Main Discord console quest completer script
 ├── enable_devtools.py      # Cross-platform utility to toggle Discord DevTools
+├── assets/                 # Screenshots & interface previews
 ├── .agents/                # Operating standards & project architecture context
 │   ├── agents.md
 │   └── project-context.md
