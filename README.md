@@ -4,9 +4,9 @@
 [![Platform: macOS & Windows](https://img.shields.io/badge/Platform-macOS%20%7C%20Windows-blue.svg)](#)
 [![Discord Client](https://img.shields.io/badge/Discord-Desktop%20Console-5865F2?logo=discord&logoColor=white)](#)
 
-A fast, lightweight, zero-install Discord Quest automation suite running directly inside the Discord desktop client console on **macOS** and **Windows**.
+A fast, lightweight Discord Quest automation suite running directly inside the Discord desktop client console on **macOS** and **Windows**.
 
-No fake executable binaries (`.exe`). No background spoofers. No disk clutter. Just paste into Discord's developer console and watch all your quests complete automatically.
+No fake executable binaries (`.exe`). No background spoofers. Just paste into Discord's developer console and watch your quests complete automatically *(see [Step 2](#step-2-optional-start-orion-relay-for-in-activity-achievement-quests) if you are running `ACHIEVEMENT_IN_ACTIVITY` quests)*.
 
 <p align="center">
   <img src="./assets/preview.jpg" alt="Orion Discord Quest Completer Interface" width="380" />
@@ -24,7 +24,7 @@ No fake executable binaries (`.exe`). No background spoofers. No disk clutter. J
   - 📺 **Stream Game** (`STREAM_ON_DESKTOP`) – simulates active broadcast stream to friends.
   - 🎬 **Watch Video** (`WATCH_VIDEO`) – sends instant completion progress in ~1 second.
   - 🎤 **Activity Quests** (`PLAY_ACTIVITY`) – simulates participation in voice activities.
-  - 🏆 **In-Activity Achievements** (`ACHIEVEMENT_IN_ACTIVITY`) – fulfills milestone criteria automatically.
+  - 🏆 **In-Activity Achievements** (`ACHIEVEMENT_IN_ACTIVITY`) – fulfills milestone criteria automatically via the Discord Says OAuth flow *(requires the local `tools/orion-relay.mjs` helper running; see below)*.
 - **✨ Full Lifecycle Automation**:
   - **Auto-Enroll**: Automatically discovers and accepts all available quests.
   - **Auto-Claim**: Immediately claims in-game items, cosmetics, or Discord Orbs upon completion.
@@ -53,6 +53,7 @@ python enable_devtools.py
 *Or enable it manually:*
 - **Windows**: Add `"DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING": true` to `%APPDATA%\discord\settings.json`.
 - **macOS**: Add `"DANGEROUS_ENABLE_DEVTOOLS_ONLY_ENABLE_IF_YOU_KNOW_WHAT_YOURE_DOING": true` to `~/Library/Application Support/discord/settings.json`.
+
 *(If you use client extensions like Vencord or BetterDiscord, DevTools is already enabled by default).*
 
 > [!NOTE]
@@ -60,7 +61,27 @@ python enable_devtools.py
 
 ---
 
-### Step 2: Run the Script in Discord
+### Step 2: (Optional) Start Orion Relay for In-Activity Achievement Quests
+
+> [!IMPORTANT]
+> **Required for `ACHIEVEMENT_IN_ACTIVITY` ("Launch Quest") quests:**
+> Play, Stream, Watch Video, and standard Voice Activity quests work zero-install directly in the Discord console. However, **In-Activity Achievement quests** (`ACHIEVEMENT_IN_ACTIVITY`) authenticate against `*.discordsays.com`, which Discord's Content Security Policy (CSP) blocks from the main console context.
+>
+> Without the local relay running, `ACHIEVEMENT_IN_ACTIVITY` quests will fail with a CSP block and be skipped.
+
+Before running the console script, start [`tools/orion-relay.mjs`](./tools/orion-relay.mjs) in a terminal using **Bun** or **Node.js (v18+)** and leave it open until those quests finish:
+
+```bash
+bun tools/orion-relay.mjs
+# or
+node tools/orion-relay.mjs
+```
+
+Orion automatically detects the relay on `[http://127.0.0.1:43210](http://127.0.0.1:43210)` and proxies the `*.discordsays.com` authorization and progress calls through localhost.
+
+---
+
+### Step 3: Run the Script in Discord
 
 1. Open your **Discord Desktop App**.
 2. Open Developer Tools using the keyboard shortcut:
@@ -71,7 +92,7 @@ python enable_devtools.py
 5. The **Quest Completer** window will appear directly in your Discord app:
    - Select the quests you want to complete.
    - Leave **"Run Game Quests in Parallel (Multi-Game)"** enabled to finish them all at once.
-   - Click **Start** and let it run!
+   - Click **Start** and let it run! *(Approve the OAuth prompt if running an `ACHIEVEMENT_IN_ACTIVITY` quest; Orion revokes the token immediately after completion.)*
 
 ---
 
@@ -83,8 +104,8 @@ python enable_devtools.py
 | **Parallel Game Tasks** | ✅ Uncapped (default 15 games simultaneously) | ❌ One game at a time |
 | **Video Quest Speed** | ✅ Instant (~1 second) | ❌ Not supported |
 | **Unlisted Executable Games (e.g. FC 27)** | ✅ Full support via App ID | ❌ Fails (Discord DB lacks `.exe`) |
-| **Activity Quests** | ✅ Full voice activity simulation | ❌ Fails |
-| **Disk Clutter** | ✅ Zero files created on Desktop | ❌ Creates copies of `.exe` on Desktop |
+| **Activity & Achievement Quests** | ✅ Voice & Activity support *(via local relay)* | ❌ Fails |
+| **Disk Clutter** | ✅ Zero fake `.exe` files created | ❌ Creates copies of `.exe` on Desktop |
 | **Auto-Claim Rewards** | ✅ Automatic instant claim | ❌ Manual claim required |
 
 ---
@@ -92,15 +113,17 @@ python enable_devtools.py
 ## 📁 Repository Structure
 
 ```text
-├── quest_script.js         # Main Discord console quest completer script
-├── enable_devtools.py      # Cross-platform utility to toggle Discord DevTools
-├── assets/                 # Screenshots & interface previews
-├── .agents/                # Operating standards & project architecture context
+├── quest_script.js          # Main Discord console quest completer script
+├── enable_devtools.py       # Cross-platform utility to toggle Discord DevTools
+├── tools/
+│   └── orion-relay.mjs      # Localhost proxy to bypass CSP for ACHIEVEMENT_IN_ACTIVITY quests
+├── assets/                  # Screenshots & interface previews
+├── .agents/                 # Operating standards & project architecture context
 │   ├── agents.md
 │   └── project-context.md
-├── CONTRIBUTING.md         # Contribution guidelines & architecture standards
-├── README.md               # Documentation & usage guide
-└── LICENSE.md              # MIT License
+├── CONTRIBUTING.md          # Contribution guidelines & architecture standards
+├── README.md                # Documentation & usage guide
+└── LICENSE.md               # MIT License
 ```
 
 ---
