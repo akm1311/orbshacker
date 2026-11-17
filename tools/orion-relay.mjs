@@ -4,7 +4,7 @@ const HOST = "127.0.0.1";
 const PORT = 43210;
 
 function setCors(req, res) {
-  const origin = req.headers.origin || "[https://discord.com](https://discord.com)";
+  const origin = req.headers.origin || "https://discord.com";
   res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");

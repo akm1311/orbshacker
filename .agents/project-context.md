@@ -3,6 +3,7 @@
 ## Layout & Components
 - [`quest_script.js`](../quest_script.js): Standalone console script running inside Discord's developer console (or via Vencord / Tampermonkey).
 - [`enable_devtools.py`](../enable_devtools.py): Multi-platform utility to find and update Discord's `settings.json` to enable DevTools access across Windows, macOS, and Linux.
+- [`tools/orion-relay.mjs`](../tools/orion-relay.mjs): Lightweight localhost proxy to bypass Discord's CSP for `ACHIEVEMENT_IN_ACTIVITY` quests.
 - [`README.md`](../README.md): Quick start guide, feature matrix, and platform instructions for Windows and macOS.
 - [`CONTRIBUTING.md`](../CONTRIBUTING.md): Contribution guidelines and architecture standards.
 - [`LICENSE.md`](../LICENSE.md): MIT License.
